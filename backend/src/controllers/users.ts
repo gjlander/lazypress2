@@ -11,8 +11,9 @@ const createUser = (
     req: Request<{}, {}, CreateUserDto, CreateUserQueryParams>,
     res: Response
 ) => {
-    const { email, password, username } = req.body;
-    res.json({ message: 'Made user' });
+    const { username, email, password } = req.body;
+
+    res.json({ username, email, password });
 };
 const getUserById = (req: Request, res: Response<User>) => {
     const { id } = req.params;
