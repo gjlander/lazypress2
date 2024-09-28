@@ -1,1 +1,1 @@
-{"root":["./index.d.ts","./src/index.ts","./src/controllers/users.ts","./src/db/index.ts","./src/dtos/createuser.dto.ts","./src/routes/users.ts","./src/types/query-params.ts","./src/types/response.ts","./src/utils/errorresponse.ts","./src/utils/asynchandler.ts"],"errors":true,"version":"5.6.2"}
+{"root":["./index.d.ts","./src/index.ts","./src/controllers/users.ts","./src/db/index.ts","./src/dtos/createuser.dto.ts","./src/routes/users.ts","./src/types/query-params.ts","./src/types/response.ts","./src/utils/errorresponse.ts","./src/utils/asynchandler.ts"],"version":"5.6.2"}
