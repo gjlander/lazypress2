@@ -3,6 +3,7 @@ import { Webhook } from 'svix';
 
 import User from '../models/User.ts';
 import ErrorResponse from '../utils/ErrorResponse.ts';
+import chalkLog from '../utils/chalkLog.ts';
 
 interface WebhookEvent {
     data: any;
@@ -105,7 +106,7 @@ const clerkWebhook = async (req: Request, res: Response): Promise<void> => {
             // console.log(previewBlog);
         }
         if (eventType === 'user.updated') {
-            console.log(`User ${id} was ${eventType}`);
+            // console.log(`User ${id} was ${eventType}`);
 
             const email = info.email_addresses[0].email_address;
             const username = info.username;
@@ -124,19 +125,21 @@ const clerkWebhook = async (req: Request, res: Response): Promise<void> => {
             message = `${username} updated successfully`;
         }
         if (eventType === 'user.deleted') {
-            console.log(`User ${id} was ${eventType}`);
+            // chalkLog('green', `User ${id} was ${eventType}`);
 
             await User.findOneAndDelete({ clerkUserId: id });
             // await BlogModel.findOneAndDelete({ clerkUserId: id });
-            message = `User deleted successfully`;
+            message = `User ${id} deleted successfully`;
         }
 
+        chalkLog('green', message);
         res.status(200).json({
             success: true,
             message: message,
         });
     } catch (err) {
-        console.log(err);
+        chalkLog('red', err);
+
         res.status(400).json({
             success: false,
             message: err,
