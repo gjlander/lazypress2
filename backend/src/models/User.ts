@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 const userSchema = new Schema(
     {
-        clerkUserId: {
+        clerkId: {
             type: String,
             unique: true,
             required: [true, 'Clerk user ID is required'],

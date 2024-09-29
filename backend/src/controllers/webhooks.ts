@@ -55,7 +55,7 @@ const clerkWebhook = async (req: Request, res: Response): Promise<void> => {
             const lastName = info.last_name;
 
             await User.create({
-                clerkUserId: id,
+                clerkId: id,
                 email,
                 username,
                 firstName,
@@ -64,10 +64,10 @@ const clerkWebhook = async (req: Request, res: Response): Promise<void> => {
 
             message = `${username} saved to database`;
             // const newClerkUser = await ClerkUser.find({
-            //     clerkUserId: id,
+            //     clerkId: id,
             // });
-            // const { _id, clerkUserId } = newClerkUser[0];
-            // console.log(_id, clerkUserId);
+            // const { _id, clerkId } = newClerkUser[0];
+            // console.log(_id, clerkId);
 
             // const previewBlog = await BlogModel.create({
             //     pages: {
@@ -100,7 +100,7 @@ const clerkWebhook = async (req: Request, res: Response): Promise<void> => {
             //         blogTitle: 'Preview Page',
             //     },
             //     clerkUser: _id,
-            //     clerkUserId,
+            //     clerkId,
             //     isPreview: true,
             // });
             // console.log(previewBlog);
@@ -113,23 +113,39 @@ const clerkWebhook = async (req: Request, res: Response): Promise<void> => {
             const firstName = info.first_name;
             const lastName = info.last_name;
 
-            await User.findOneAndUpdate(
-                { clerkUserId: id },
-                {
+            const found = await User.findOne({ clerkId: id });
+
+            if (!found) {
+                await User.create({
+                    clerkId: id,
                     email,
                     username,
                     firstName,
                     lastName,
-                }
-            );
-            message = `${username} updated successfully`;
+                });
+
+                message = `${username} was not found, so an entry was created`;
+            } else {
+                found.email = email;
+                found.username = username;
+                found.firstName = firstName;
+                found.lastName = lastName;
+
+                await found.save();
+                message = `${username} updated successfully`;
+            }
         }
         if (eventType === 'user.deleted') {
             // chalkLog('green', `User ${id} was ${eventType}`);
 
-            await User.findOneAndDelete({ clerkUserId: id });
-            // await BlogModel.findOneAndDelete({ clerkUserId: id });
-            message = `User ${id} deleted successfully`;
+            const found = await User.findOneAndDelete({ clerkId: id });
+            // await BlogModel.findOneAndDelete({ clerkId: id });
+
+            if (!found) {
+                message = `User ${id} was not found, there may be an error with the webhooks.`;
+            } else {
+                message = `User ${id} deleted successfully`;
+            }
         }
 
         chalkLog('green', message);
