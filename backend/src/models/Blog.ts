@@ -1,9 +1,10 @@
 import { Schema, model } from 'mongoose';
 
-import heroSchema from '../schemas/heroSchema.ts';
 import cardSchema from '../schemas/cardSchema.ts';
-import navBarSchema from '../schemas/navBarSchema.ts';
+import editorSchema from '../schemas/editorSchema.ts';
 import footerSchema from '../schemas/footerSchema.ts';
+import heroSchema from '../schemas/heroSchema.ts';
+import navBarSchema from '../schemas/navBarSchema.ts';
 
 const blogSchema = new Schema(
     {
@@ -27,16 +28,12 @@ const blogSchema = new Schema(
             siteUrl: String,
             previewUrl: String,
         },
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true,
-        },
-        clerkUserId: {
-            type: String,
-            required: true,
-        },
-        posts: [Schema.Types.ObjectId],
+        editors: [editorSchema],
+        // clerkUserId: {
+        //     type: String,
+        //     required: true,
+        // },
+        // posts: [Schema.Types.ObjectId],
         isPreview: { type: Boolean, default: false },
     },
     { timestamps: true }
