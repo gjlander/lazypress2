@@ -28,7 +28,7 @@ const blogSchema = new Schema(
             siteUrl: String,
             previewUrl: String,
         },
-        editors: [editorSchema],
+        editors: { type: [editorSchema], required: true },
         // clerkUserId: {
         //     type: String,
         //     required: true,

@@ -19,7 +19,8 @@
         "express": "^4.21.0",
         "joi": "^17.13.3",
         "mongoose": "^8.7.0",
-        "svix": "^1.36.0"
+        "svix": "^1.36.0",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
         "@tsconfig/node18": "^18.2.4",

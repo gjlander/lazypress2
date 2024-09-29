@@ -8,6 +8,7 @@ import errorHandler from './middlewares/errorHandler.ts';
 import ErrorResponse from './utils/ErrorResponse.ts';
 
 import userRouter from './routes/users.ts';
+import blogRouter from './routes/blogs.ts';
 import { clerkWebhook } from './controllers/webhooks.ts';
 
 const app = express();
@@ -17,6 +18,7 @@ const port = process.env.PORT || 24601;
 app.use(cors({ exposedHeaders: 'Authorization' }));
 
 app.use('/api/users', userRouter);
+app.use('/api/blogs', blogRouter);
 
 app.post(
     '/api/webhooks',
