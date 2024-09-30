@@ -2,18 +2,18 @@ import { Schema, model } from 'mongoose';
 
 import cardSchema from '../schemas/cardSchema.ts';
 import editorSchema from '../schemas/editorSchema.ts';
-import footerSchema from '../schemas/footerSchema.ts';
-import heroSchema from '../schemas/heroSchema.ts';
-import navBarSchema from '../schemas/navBarSchema.ts';
+import linkSchema from '../schemas/linkSchema.ts';
 
 const blogSchema = new Schema(
     {
-        pages: {
+        content: {
+            ui: {
+                navbar: [linkSchema],
+                footer: [linkSchema],
+            },
             home: {
-                navBar: [navBarSchema],
-                hero: [heroSchema],
+                heroSlides: [cardSchema],
                 cards: [cardSchema],
-                footer: [footerSchema],
             },
         },
         dashboard: {
@@ -28,7 +28,7 @@ const blogSchema = new Schema(
             siteUrl: String,
             previewUrl: String,
         },
-        editors: { type: [editorSchema], required: true },
+        users: { type: [editorSchema], required: true },
         // clerkUserId: {
         //     type: String,
         //     required: true,
