@@ -2,9 +2,11 @@ import Link from "next/link";
 import { Button } from "./button";
 const Navbar = () => {
   return (
-    <header className="z-1000 flex min-h-16 items-center justify-between rounded-2xl bg-white/30 px-16 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm">
+    <header className="z-1000 flex min-h-16 items-center justify-around rounded-2xl bg-white/30 py-2 text-black shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm">
       <nav>
-        <Link href="/">LazyPress</Link>
+        <Link href="/" className="text-3xl font-bold text-shadow-lg">
+          LazyPress
+        </Link>
       </nav>
       <nav>
         <ul className="flex gap-4">
