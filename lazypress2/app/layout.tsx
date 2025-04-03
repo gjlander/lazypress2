@@ -13,6 +13,10 @@ const lemonMilk = localFont({
   src: "../public/fonts/LemonMilk.otf",
   variable: "--font-lemon-milk",
 });
+const metropolis = localFont({
+  src: "../public/fonts/Metropolis.otf",
+  variable: "--font-metropolis",
+});
 
 export const metadata: Metadata = {
   title: "LazyPress",
@@ -27,11 +31,9 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en">
       <body
-        className={`${momCake.variable} ${lemonMilk.variable} flex min-h-svh flex-col antialiased`}
+        className={`${momCake.variable} ${lemonMilk.variable} ${metropolis.variable} flex min-h-svh flex-col antialiased`}
       >
-        <Navbar />
-        <main className="flex flex-grow flex-col">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
