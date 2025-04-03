@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mom-cake: var(--font-mom-cake), "sans-serif";
+  --font-lemon-milk: var(--font-lemon-milk), "sans-serif";
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -41,6 +41,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+@theme {
+  --shadow-jelly:
+    0 1rem 1.25rem 0 rgba(22, 75, 195, 0.5),
+    0 -0.25rem 1.5rem rgba(110, 15, 155, 1) inset,
+    0 0.75rem 0.5rem rgba(255, 255, 255, 0.4) inset,
+    0 0.25rem 0.5rem 0 rgba(180, 70, 207, 1) inset;
 }
 
 :root {
@@ -111,12 +119,51 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-mom-cake text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-lemon-milk;
+  }
+  /* button {
+    @apply relative h-10 cursor-pointer rounded-full bg-linear-[-180deg,#aee5d8_0%,#e5d0e3_100%] font-semibold text-black shadow-jelly;
+  } */
+}
+
+@layer components {
+  .neon-text {
+    font-size: 5rem;
+    color: #df8ff5;
+    text-shadow:
+      0 0 10px rgba(174, 41, 138, 0.8),
+      0 0 20px rgba(131, 215, 228, 0.8),
+      0 0 30px rgba(230, 0, 255, 0.8);
+    animation: neonBuzz 1s linear infinite alternate;
+    margin-bottom: -5vh;
+  }
+
+  @keyframes neonBuzz {
+    from {
+      text-shadow:
+        0 0 10px #b400a5cf,
+        0 0 20px rgba(255, 0, 230, 0.8),
+        0 0 30px rgba(255, 0, 208, 0.8);
+    }
+    to {
+      text-shadow:
+        0 0 20px rgba(247, 0, 255, 0.8),
+        0 0 40px rgba(212, 0, 255, 0.8),
+        0 0 60px rgba(255, 0, 247, 0.8);
+    }
   }
 }
