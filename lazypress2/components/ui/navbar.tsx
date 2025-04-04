@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "./button";
+import GitHubSignin from "./github-signin";
 const Navbar = () => {
   return (
     <header className="z-1000 flex min-h-16 items-center justify-around rounded-2xl bg-white/30 py-2 font-mom-cake text-black shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm">
@@ -33,6 +34,9 @@ const Navbar = () => {
                 Sign Up
               </Button>
             </Link>
+          </li>
+          <li>
+            <GitHubSignin />
           </li>
         </ul>
       </nav>
